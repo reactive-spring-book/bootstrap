@@ -1,4 +1,4 @@
-package com.example.bootstrap;
+package rsb.bootstrap;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
