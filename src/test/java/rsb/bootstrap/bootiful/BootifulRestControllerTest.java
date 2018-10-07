@@ -14,7 +14,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import rsb.bootstrap.Customer;
 import rsb.bootstrap.CustomerService;
-import rsb.bootstrap.bootiful.BootifulRestController;
 
 import java.util.Collections;
 

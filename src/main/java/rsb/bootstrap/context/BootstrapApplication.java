@@ -5,8 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import rsb.bootstrap.CustomerService;
-import rsb.bootstrap.DataSourceUtils;
 import rsb.bootstrap.DataSourceConfiguration;
+import rsb.bootstrap.DataSourceUtils;
 import rsb.bootstrap.templates.TransactionTemplateCustomerService;
 
 import javax.sql.DataSource;

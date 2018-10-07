@@ -1,7 +1,6 @@
 package rsb.bootstrap.bootiful;
 
 import lombok.extern.log4j.Log4j2;
-import org.junit.After;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
