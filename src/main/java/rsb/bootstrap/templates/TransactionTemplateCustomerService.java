@@ -1,4 +1,4 @@
-package rsb.bootstrap.v3;
+package rsb.bootstrap.templates;
 
 import lombok.ToString;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -10,6 +10,7 @@ import rsb.bootstrap.CustomerService;
 import javax.sql.DataSource;
 import java.util.Collection;
 
+// 3.0
 @ToString
 public class TransactionTemplateCustomerService extends BaseCustomerService
 		implements CustomerService {

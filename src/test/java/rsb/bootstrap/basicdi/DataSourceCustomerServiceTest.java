@@ -1,9 +1,10 @@
-package rsb.bootstrap.v2;
+package rsb.bootstrap.basicdi;
 
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import rsb.bootstrap.BaseClass;
 import rsb.bootstrap.CustomerService;
+import rsb.bootstrap.DataSourceUtils;
 
 import javax.sql.DataSource;
 
@@ -13,8 +14,9 @@ public class DataSourceCustomerServiceTest extends BaseClass {
 
 	public DataSourceCustomerServiceTest() {
 		DataSource dataSource = new EmbeddedDatabaseBuilder()
-				.setType(EmbeddedDatabaseType.H2).addScript("/schema.sql").build();
-		this.customerService = new DataSourceCustomerService(dataSource);
+				.setType(EmbeddedDatabaseType.H2).build();
+		this.customerService = new DataSourceCustomerService(
+				DataSourceUtils.initializeDdl(dataSource));
 	}
 
 	@Override

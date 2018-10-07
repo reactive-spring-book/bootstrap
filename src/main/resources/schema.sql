@@ -3,4 +3,3 @@ create table if not exists CUSTOMERS (
   name varchar (255)
 );
 
-select 1;

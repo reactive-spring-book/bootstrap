@@ -1,9 +1,12 @@
-package rsb.bootstrap.v3;
+package rsb.bootstrap.templates;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import rsb.bootstrap.BaseClass;
 import rsb.bootstrap.Customer;
 import rsb.bootstrap.CustomerService;
@@ -14,10 +17,17 @@ public class TransactionTemplateCustomerServiceTest extends BaseClass {
 
 	private final TransactionTemplateCustomerService customerService;
 
+	private DataSource init(DataSource dataSource) {
+		ResourceDatabasePopulator populator = new ResourceDatabasePopulator(
+				new ClassPathResource("schema.sql"));
+		DatabasePopulatorUtils.execute(populator, dataSource);
+		return dataSource;
+	}
+
 	public TransactionTemplateCustomerServiceTest() {
 		DataSource dataSource = new EmbeddedDatabaseBuilder()
-				.setType(EmbeddedDatabaseType.H2).addScript("/schema.sql").build();
-		this.customerService = new TransactionTemplateCustomerService(dataSource);
+				.setType(EmbeddedDatabaseType.H2).build();
+		this.customerService = new TransactionTemplateCustomerService(init(dataSource));
 	}
 
 	@Override

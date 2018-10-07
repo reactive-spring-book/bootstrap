@@ -10,8 +10,8 @@ public abstract class BaseClass {
 	public abstract CustomerService getCustomerService();
 
 	@Test
-	public void insert() throws Exception {
-		Customer bob = getCustomerService().save("BOB");
+	public void insert() {
+		Customer bob = getCustomerService().save("Bob");
 		Assert.assertNotNull(bob);
 	}
 

@@ -1,4 +1,4 @@
-package rsb.bootstrap.v4;
+package rsb.bootstrap.context;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.ApplicationContext;
@@ -9,9 +9,9 @@ import rsb.bootstrap.CustomerService;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Log4j2
-public class SimpleJavaConfigurationTest extends BaseClass {
+public class ContextTest extends BaseClass {
 
-	private final AtomicReference<ApplicationContext> applicationContextAtomicReference = new AtomicReference<>();
+	private final AtomicReference<ApplicationContext> reference = new AtomicReference<>();
 
 	private ApplicationContext buildApplicationContext(Class<?> config,
 			String... profiles) {
@@ -25,13 +25,12 @@ public class SimpleJavaConfigurationTest extends BaseClass {
 
 	@Override
 	public CustomerService getCustomerService() {
-		if (this.applicationContextAtomicReference.get() == null) {
+		if (this.reference.get() == null) {
 			ApplicationContext applicationContext = this
 					.buildApplicationContext(BootstrapApplication.class, "prod");
-			this.applicationContextAtomicReference.set(applicationContext);
+			this.reference.set(applicationContext);
 		}
-		return this.applicationContextAtomicReference.get()
-				.getBean(CustomerService.class);
+		return this.reference.get().getBean(CustomerService.class);
 	}
 
 }

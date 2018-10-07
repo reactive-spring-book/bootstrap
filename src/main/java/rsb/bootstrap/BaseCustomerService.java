@@ -19,15 +19,15 @@ public abstract class BaseCustomerService implements CustomerService {
 
 	private final AtomicReference<JdbcTemplate> templateAtomicReference = new AtomicReference<>();
 
+	private final RowMapper<Customer> rowMapper = (rs,
+			i) -> new Customer(rs.getLong("id"), rs.getString("NAME"));
+
 	private JdbcTemplate getJdbcTemplate() {
 		if (this.templateAtomicReference.get() == null) {
 			this.templateAtomicReference.set(new JdbcTemplate(getDataSource()));
 		}
 		return this.templateAtomicReference.get();
 	}
-
-	private final RowMapper<Customer> rowMapper = (rs,
-			i) -> new Customer(rs.getLong("id"), rs.getString("NAME"));
 
 	@Override
 	public Customer save(String name) {

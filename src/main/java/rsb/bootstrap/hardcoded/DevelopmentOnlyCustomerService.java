@@ -1,4 +1,4 @@
-package rsb.bootstrap.v1;
+package rsb.bootstrap.hardcoded;
 
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -8,6 +8,7 @@ import rsb.bootstrap.CustomerService;
 
 import javax.sql.DataSource;
 
+// 1.0
 public class DevelopmentOnlyCustomerService extends BaseCustomerService
 		implements CustomerService {
 
@@ -15,7 +16,7 @@ public class DevelopmentOnlyCustomerService extends BaseCustomerService
 
 	public DevelopmentOnlyCustomerService() {
 		this.dataSource = new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2)
-				.addScript("/schema.sql").build();
+				.build();
 	}
 
 	@Override

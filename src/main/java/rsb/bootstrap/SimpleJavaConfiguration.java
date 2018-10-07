@@ -1,4 +1,4 @@
-package rsb.bootstrap.v4;
+package rsb.bootstrap;
 
 import lombok.extern.log4j.Log4j2;
 import org.h2.Driver;
@@ -9,13 +9,11 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
-import rsb.bootstrap.CustomerService;
-import rsb.bootstrap.v3.TransactionTemplateCustomerService;
+import rsb.bootstrap.templates.TransactionTemplateCustomerService;
 
 import javax.sql.DataSource;
 
@@ -35,7 +33,7 @@ public class SimpleJavaConfiguration {
 			DriverManagerDataSource dataSource = new DriverManagerDataSource(url,
 					username, password);
 			dataSource.setDriverClassName(Driver.class.getName());
-			return init(dataSource);
+			return dataSource;
 		}
 
 	}
@@ -47,24 +45,9 @@ public class SimpleJavaConfiguration {
 
 		@Bean
 		DataSource developmentDataSource() {
-			EmbeddedDatabase embeddedDatabase = new EmbeddedDatabaseBuilder()
-					.setType(EmbeddedDatabaseType.H2).build();
-			return init(embeddedDatabase);
+			return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build();
 		}
 
-	}
-
-	private static DataSource init(DataSource dataSource) {
-		ResourceDatabasePopulator populator = new ResourceDatabasePopulator(
-				new ClassPathResource("/schema.sql"));
-		DatabasePopulatorUtils.execute(populator, dataSource);
-		return dataSource;
-	}
-
-	@Bean
-	TransactionTemplateCustomerService customerService(DataSource dataSource) {
-		log.info("creating the " + CustomerService.class.getName() + ".");
-		return new TransactionTemplateCustomerService(dataSource);
 	}
 
 }

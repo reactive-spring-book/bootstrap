@@ -1,10 +1,11 @@
-package rsb.bootstrap.v2;
+package rsb.bootstrap.basicdi;
 
 import rsb.bootstrap.BaseCustomerService;
 import rsb.bootstrap.CustomerService;
 
 import javax.sql.DataSource;
 
+// 2.0
 public class DataSourceCustomerService extends BaseCustomerService
 		implements CustomerService {
 

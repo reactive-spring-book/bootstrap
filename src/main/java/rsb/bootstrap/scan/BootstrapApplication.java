@@ -1,11 +1,12 @@
-package rsb.bootstrap.v4;
+package rsb.bootstrap.scan;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 
+// 5.0
 @Configuration
-@Import(SimpleJavaConfiguration.class)
+@ComponentScan
 public class BootstrapApplication {
 
 	public static void main(String args[]) {
