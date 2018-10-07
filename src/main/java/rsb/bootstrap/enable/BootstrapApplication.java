@@ -6,13 +6,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import rsb.bootstrap.CustomerService;
-import rsb.bootstrap.SimpleJavaConfiguration;
+import rsb.bootstrap.DataSourceConfiguration;
 
 // 5.0
 @Configuration
 @EnableTransactionManagement
 @ComponentScan
-@Import(SimpleJavaConfiguration.class)
+@Import(DataSourceConfiguration.class)
 public class BootstrapApplication {
 
 	public static void main(String args[]) {

@@ -6,13 +6,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import rsb.bootstrap.CustomerService;
 import rsb.bootstrap.DataSourceUtils;
-import rsb.bootstrap.SimpleJavaConfiguration;
+import rsb.bootstrap.DataSourceConfiguration;
 import rsb.bootstrap.templates.TransactionTemplateCustomerService;
 
 import javax.sql.DataSource;
 
 @Configuration
-@Import(SimpleJavaConfiguration.class)
+@Import(DataSourceConfiguration.class)
 public class BootstrapApplication {
 
 	@Bean
