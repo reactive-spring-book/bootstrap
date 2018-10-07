@@ -1,9 +1,8 @@
-package rsb.bootstrap.context;
+package rsb.bootstrap.scan;
 
-import lombok.extern.log4j.Log4j2;
 import rsb.bootstrap.ApplicationContextAwareBaseClass;
 
-public class ContextTest extends ApplicationContextAwareBaseClass {
+public class DiscoveredCustomerServiceTest extends ApplicationContextAwareBaseClass {
 
 	@Override
 	protected Class<?> getConfigurationClass() {

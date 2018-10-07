@@ -30,7 +30,7 @@ public class DataSourceConfiguration {
 			DriverManagerDataSource dataSource = new DriverManagerDataSource(url,
 					username, password);
 			dataSource.setDriverClassName(driverClass.getName());
-			return dataSource;
+			return DataSourceUtils.initializeDdl(dataSource);
 		}
 
 	}
@@ -42,7 +42,8 @@ public class DataSourceConfiguration {
 
 		@Bean
 		DataSource developmentDataSource() {
-			return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build();
+			return DataSourceUtils.initializeDdl(new EmbeddedDatabaseBuilder()
+					.setType(EmbeddedDatabaseType.H2).build());
 		}
 
 	}
