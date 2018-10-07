@@ -1,25 +1,29 @@
 package rsb.bootstrap;
 
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.concurrent.atomic.AtomicReference;
 
 public abstract class ApplicationContextAwareBaseClass extends BaseClass {
 
-	private final AtomicReference<ApplicationContext> reference = new AtomicReference<>();
+	private final AtomicReference<ConfigurableApplicationContext> reference = new AtomicReference<>();
 
-	@Override
-	public CustomerService getCustomerService() {
+	protected ConfigurableApplicationContext getCurrentApplicationContext() {
 		if (this.reference.get() == null) {
-			ApplicationContext applicationContext = this
+			ConfigurableApplicationContext applicationContext = this
 					.buildApplicationContext(getConfigurationClass(), "prod");
 			this.reference.set(applicationContext);
 		}
-		return this.reference.get().getBean(CustomerService.class);
+		return this.reference.get();
 	}
 
-	protected ApplicationContext buildApplicationContext(Class<?> config,
+	@Override
+	public CustomerService getCustomerService() {
+		return getCurrentApplicationContext().getBean(CustomerService.class);
+	}
+
+	protected ConfigurableApplicationContext buildApplicationContext(Class<?> config,
 			String... profiles) {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.getEnvironment().setActiveProfiles(profiles);
