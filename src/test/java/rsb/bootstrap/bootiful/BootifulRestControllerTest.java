@@ -17,9 +17,6 @@ import rsb.bootstrap.CustomerService;
 
 import java.util.Collections;
 
-/**
- * @author <a href="mailto:josh@joshlong.com">Josh Long</a>
- */
 @WebMvcTest
 @RunWith(SpringRunner.class)
 @Import(BootifulRestController.class)
