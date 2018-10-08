@@ -10,7 +10,6 @@ import rsb.bootstrap.CustomerService;
 import javax.sql.DataSource;
 import java.util.Collection;
 
-// 3.0
 @ToString
 public class TransactionTemplateCustomerService extends BaseCustomerService
 		implements CustomerService {

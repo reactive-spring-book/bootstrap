@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Import;
 import rsb.bootstrap.CustomerService;
 import rsb.bootstrap.DataSourceConfiguration;
 
-// 5.0
 @Configuration
 @ComponentScan
 @Import(DataSourceConfiguration.class)

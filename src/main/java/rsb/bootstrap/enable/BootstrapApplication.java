@@ -9,7 +9,6 @@ import rsb.bootstrap.DataSourceConfiguration;
 
 import javax.sql.DataSource;
 
-// 5.0
 @Configuration
 @EnableTransactionManagement
 @ComponentScan

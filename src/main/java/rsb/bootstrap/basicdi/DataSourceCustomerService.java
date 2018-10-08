@@ -5,7 +5,6 @@ import rsb.bootstrap.CustomerService;
 
 import javax.sql.DataSource;
 
-// 2.0
 public class DataSourceCustomerService extends BaseCustomerService
 		implements CustomerService {
 

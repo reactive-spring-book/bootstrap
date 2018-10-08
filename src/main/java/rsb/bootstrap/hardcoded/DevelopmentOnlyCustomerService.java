@@ -8,7 +8,6 @@ import rsb.bootstrap.CustomerService;
 
 import javax.sql.DataSource;
 
-// 1.0
 public class DevelopmentOnlyCustomerService extends BaseCustomerService
 		implements CustomerService {
 
