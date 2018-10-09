@@ -4,6 +4,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import rsb.bootstrap.CustomerService;
 import rsb.bootstrap.Demo;
 
@@ -16,6 +17,7 @@ public class Application {
 	}
 
 	@Bean
+	@Profile("default")
 	ApplicationRunner run(CustomerService customerService) {
 		return args -> Demo.workWithCustomerService(getClass(), customerService);
 	}
