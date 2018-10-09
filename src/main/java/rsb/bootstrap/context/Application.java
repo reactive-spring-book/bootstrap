@@ -1,19 +1,17 @@
 package rsb.bootstrap.context;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import rsb.bootstrap.CustomerService;
-import rsb.bootstrap.DataSourceConfiguration;
-import rsb.bootstrap.DataSourceUtils;
+import rsb.bootstrap.*;
 import rsb.bootstrap.templates.TransactionTemplateCustomerService;
 
 import javax.sql.DataSource;
 
 @Configuration
 @Import(DataSourceConfiguration.class)
-public class BootstrapApplication {
+public class Application {
 
 	@Bean
 	TransactionTemplateCustomerService customerService(DataSource dataSource) {
@@ -22,12 +20,10 @@ public class BootstrapApplication {
 	}
 
 	public static void main(String args[]) {
-		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
-		applicationContext.getEnvironment().setActiveProfiles("prod");
-		applicationContext.register(BootstrapApplication.class);
-		applicationContext.refresh();
-		applicationContext.start();
+		ConfigurableApplicationContext applicationContext = SpringUtils
+				.run(Application.class, "prod");
 		CustomerService cs = applicationContext.getBean(CustomerService.class);
+		Demo.workWithCustomerService(Application.class, cs);
 	}
 
 }

@@ -6,7 +6,7 @@ public class ContextTest extends ApplicationContextAwareBaseClass {
 
 	@Override
 	protected Class<?> getConfigurationClass() {
-		return BootstrapApplication.class;
+		return Application.class;
 	}
 
 }

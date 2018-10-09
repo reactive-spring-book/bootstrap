@@ -29,7 +29,7 @@ public class EnableApplicationTest extends ApplicationContextAwareBaseClass {
 
 	@Override
 	protected Class<?> getConfigurationClass() {
-		return BootstrapApplication.class;
+		return Application.class;
 	}
 
 }

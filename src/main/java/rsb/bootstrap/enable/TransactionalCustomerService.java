@@ -4,18 +4,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import rsb.bootstrap.BaseCustomerService;
 import rsb.bootstrap.Customer;
-import rsb.bootstrap.CustomerService;
 
 import javax.sql.DataSource;
 import java.util.Collection;
 
 @Service
-public class TransactionalCustomerService extends BaseCustomerService
-		implements CustomerService {
+public class TransactionalCustomerService extends BaseCustomerService {
 
 	private final DataSource dataSource;
 
-	public TransactionalCustomerService(DataSource dataSource) {
+	TransactionalCustomerService(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 

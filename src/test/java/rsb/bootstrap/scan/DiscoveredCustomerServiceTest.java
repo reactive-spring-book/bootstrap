@@ -6,7 +6,7 @@ public class DiscoveredCustomerServiceTest extends ApplicationContextAwareBaseCl
 
 	@Override
 	protected Class<?> getConfigurationClass() {
-		return BootstrapApplication.class;
+		return Application.class;
 	}
 
 }

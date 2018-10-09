@@ -9,7 +9,7 @@ import rsb.bootstrap.ApplicationContextAwareBaseClass;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Log4j2
-public class BootifulApplicationTest extends ApplicationContextAwareBaseClass {
+public class ApplicationTest extends ApplicationContextAwareBaseClass {
 
 	private final AtomicReference<ApplicationContext> contextAtomicReference = new AtomicReference<>();
 
@@ -21,7 +21,7 @@ public class BootifulApplicationTest extends ApplicationContextAwareBaseClass {
 
 	@Override
 	protected Class<?> getConfigurationClass() {
-		return BootifulApplication.class;
+		return Application.class;
 	}
 
 }

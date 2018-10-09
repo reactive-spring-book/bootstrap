@@ -1,11 +1,17 @@
 package rsb.bootstrap.enable;
 
-import org.springframework.context.annotation.*;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import rsb.bootstrap.CustomerService;
 import rsb.bootstrap.DataSourceConfiguration;
+import rsb.bootstrap.Demo;
+import rsb.bootstrap.SpringUtils;
 
 import javax.sql.DataSource;
 
@@ -13,7 +19,7 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 @ComponentScan
 @Import(DataSourceConfiguration.class)
-public class BootstrapApplication {
+public class Application {
 
 	@Bean
 	PlatformTransactionManager platformTransactionManager(DataSource dataSource) {
@@ -21,12 +27,11 @@ public class BootstrapApplication {
 	}
 
 	public static void main(String args[]) {
-		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
-		applicationContext.getEnvironment().setActiveProfiles("prod");
-		applicationContext.register(BootstrapApplication.class);
-		applicationContext.refresh();
-		applicationContext.start();
-		CustomerService cs = applicationContext.getBean(CustomerService.class);
+		ConfigurableApplicationContext applicationContext = SpringUtils
+				.run(Application.class, "prod");
+		CustomerService customerService = applicationContext
+				.getBean(CustomerService.class);
+		Demo.workWithCustomerService(Application.class, customerService);
 	}
 
 }
