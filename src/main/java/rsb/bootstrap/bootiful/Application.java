@@ -17,7 +17,8 @@ public class Application {
 	}
 
 	@Bean
-	@Profile("default")
+	@Profile("dev") // <1> we don't want this code running with the mock
+	// `CustomerService` in our test
 	ApplicationRunner run(CustomerService customerService) {
 		return args -> Demo.workWithCustomerService(getClass(), customerService);
 	}
