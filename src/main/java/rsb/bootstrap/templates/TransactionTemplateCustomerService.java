@@ -1,6 +1,7 @@
 package rsb.bootstrap.templates;
 
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.support.TransactionTemplate;
 import rsb.bootstrap.BaseCustomerService;
 import rsb.bootstrap.Customer;
@@ -9,25 +10,14 @@ import rsb.bootstrap.CustomerService;
 import javax.sql.DataSource;
 import java.util.Collection;
 
-public class TransactionTemplateCustomerService extends BaseCustomerService
-		implements CustomerService {
-
-	private final DataSource dataSource;
+public class TransactionTemplateCustomerService extends BaseCustomerService {
 
 	private final TransactionTemplate transactionTemplate;
 
 	public TransactionTemplateCustomerService(DataSource ds) {
-		this.dataSource = ds;
-
-		DataSourceTransactionManager transactionManager = new DataSourceTransactionManager(
-				this.dataSource);
-
-		this.transactionTemplate = new TransactionTemplate(transactionManager);
-	}
-
-	@Override
-	protected DataSource getDataSource() {
-		return this.dataSource;
+		super(ds);
+		PlatformTransactionManager txManager = new DataSourceTransactionManager(ds);
+		this.transactionTemplate = new TransactionTemplate(txManager);
 	}
 
 	@Override

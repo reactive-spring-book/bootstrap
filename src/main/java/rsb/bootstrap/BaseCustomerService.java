@@ -11,29 +11,26 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.Collection;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicReference;
 
-public abstract class BaseCustomerService implements CustomerService {
-
-	protected abstract DataSource getDataSource();
-
-	private final AtomicReference<JdbcTemplate> templateAtomicReference = new AtomicReference<>();
+// <1>
+public class BaseCustomerService implements CustomerService {
 
 	private final RowMapper<Customer> rowMapper = (rs,
 			i) -> new Customer(rs.getLong("id"), rs.getString("NAME"));
 
-	private JdbcTemplate getJdbcTemplate() {
-		if (this.templateAtomicReference.get() == null) {
-			this.templateAtomicReference.set(new JdbcTemplate(getDataSource()));
-		}
-		return this.templateAtomicReference.get();
+	// <2>
+	private final JdbcTemplate jdbcTemplate;
+
+	// <3>
+	protected BaseCustomerService(DataSource ds) {
+		this.jdbcTemplate = new JdbcTemplate(ds);
 	}
 
 	@Override
 	public Customer save(String name) {
 
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-		this.getJdbcTemplate().update(connection -> {
+		this.jdbcTemplate.update(connection -> {
 			PreparedStatement ps = connection.prepareStatement(
 					"insert into CUSTOMERS (name) values(?)",
 					Statement.RETURN_GENERATED_KEYS);
@@ -49,12 +46,12 @@ public abstract class BaseCustomerService implements CustomerService {
 	@Override
 	public Customer findById(Long id) {
 		String sql = "select * from CUSTOMERS where id = ?";
-		return this.getJdbcTemplate().queryForObject(sql, this.rowMapper, id);
+		return this.jdbcTemplate.queryForObject(sql, this.rowMapper, id);
 	}
 
 	@Override
 	public Collection<Customer> findAll() {
-		return this.getJdbcTemplate().query("select * from CUSTOMERS", rowMapper);
+		return this.jdbcTemplate.query("select * from CUSTOMERS", rowMapper);
 	}
 
 }

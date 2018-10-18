@@ -6,17 +6,10 @@ import rsb.bootstrap.BaseCustomerService;
 import javax.sql.DataSource;
 
 @Service
-public class DiscoveredCustomerService extends BaseCustomerService {
-
-	private final DataSource dataSource;
+class DiscoveredCustomerService extends BaseCustomerService {
 
 	public DiscoveredCustomerService(DataSource ds) {
-		this.dataSource = ds;
-	}
-
-	@Override
-	protected DataSource getDataSource() {
-		return this.dataSource;
+		super(ds);
 	}
 
 }

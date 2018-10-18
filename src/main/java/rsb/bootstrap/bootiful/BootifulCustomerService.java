@@ -7,18 +7,10 @@ import rsb.bootstrap.CustomerService;
 import javax.sql.DataSource;
 
 @Service
-public class BootifulCustomerService extends BaseCustomerService
-		implements CustomerService {
+class BootifulCustomerService extends BaseCustomerService {
 
-	private final DataSource dataSource;
-
-	public BootifulCustomerService(DataSource dataSource) {
-		this.dataSource = dataSource;
-	}
-
-	@Override
-	protected DataSource getDataSource() {
-		return this.dataSource;
+	BootifulCustomerService(DataSource ds) {
+		super(ds);
 	}
 
 }

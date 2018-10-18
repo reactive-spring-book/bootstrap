@@ -9,17 +9,10 @@ import javax.sql.DataSource;
 import java.util.Collection;
 
 @Service
-public class TransactionalCustomerService extends BaseCustomerService {
-
-	private final DataSource dataSource;
+class TransactionalCustomerService extends BaseCustomerService {
 
 	TransactionalCustomerService(DataSource dataSource) {
-		this.dataSource = dataSource;
-	}
-
-	@Override
-	protected DataSource getDataSource() {
-		return this.dataSource;
+		super(dataSource);
 	}
 
 	@Transactional

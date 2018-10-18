@@ -9,9 +9,7 @@ public class HardcodedTest extends BaseClass {
 	private final CustomerService customerService;
 
 	public HardcodedTest() {
-		DevelopmentOnlyCustomerService customerService = new DevelopmentOnlyCustomerService();
-		DataSourceUtils.initializeDdl(customerService.getDataSource());
-		this.customerService = customerService;
+		this.customerService = new DevelopmentOnlyCustomerService();
 	}
 
 	@Override
