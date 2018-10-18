@@ -22,6 +22,7 @@ public class Application {
 	public static void main(String args[]) {
 		ConfigurableApplicationContext applicationContext = SpringUtils
 				.run(Application.class, "prod");
+
 		CustomerService cs = applicationContext.getBean(CustomerService.class);
 		Demo.workWithCustomerService(Application.class, cs);
 	}
