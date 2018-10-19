@@ -14,7 +14,7 @@ class DevelopmentOnlyCustomerService extends BaseCustomerService {
 		super(buildDataSource());
 	}
 
-	private static DataSource buildDataSource() {
+	private static DataSource buildDataSource() { // <1>
 		DataSource dataSource = new EmbeddedDatabaseBuilder()
 				.setType(EmbeddedDatabaseType.H2).build();
 		return DataSourceUtils.initializeDdl(dataSource);
