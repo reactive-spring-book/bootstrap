@@ -16,8 +16,7 @@ public class Demo {
 		log.info("====================================");
 
 		// <2>
-		Stream.of("A", "B", "C")
-			.map(customerService::save)
+		Stream.of("A", "B", "C").map(customerService::save)
 				.forEach(customer -> log.info("saved " + customer.toString()));
 
 		// <3>

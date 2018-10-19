@@ -8,4 +8,5 @@ public class Application {
 		DevelopmentOnlyCustomerService customerService = new DevelopmentOnlyCustomerService();
 		Demo.workWithCustomerService(Application.class, customerService);
 	}
+
 }
