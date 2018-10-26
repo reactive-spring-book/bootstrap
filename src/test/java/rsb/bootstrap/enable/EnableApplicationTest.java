@@ -1,33 +1,21 @@
 package rsb.bootstrap.enable;
 
-import org.junit.Assert;
 import org.junit.Test;
 import rsb.bootstrap.ApplicationContextAwareBaseClass;
-import rsb.bootstrap.Customer;
-
-import java.util.Collection;
+import rsb.bootstrap.TransactionTestMixin;
 
 /**
  * @author <a href="mailto:josh@joshlong.com">Josh Long</a>
  */
-public class EnableApplicationTest extends ApplicationContextAwareBaseClass {
+public class EnableApplicationTest extends ApplicationContextAwareBaseClass
+		implements TransactionTestMixin {
 
 	@Override
 	@Test
 	public void insert() {
-		int count = getCustomerService().findAll().size();
-		try {
-			Collection<Customer> bobs = getCustomerService().save("Bob");
-			Assert.assertNotNull(bobs);
-			Assert.assertEquals(bobs.size(), 1);
-			getCustomerService().save((String) null);
-		}
-		catch (Exception ex) {
-			Assert.assertEquals("there should be one more record in the database",
-					getCustomerService().findAll().size(), 1 + count);
-			return;
-		}
-		Assert.fail();
+		super.insert();
+
+		this.testTransactionalityOfSave(getCustomerService());
 	}
 
 	@Override
