@@ -4,7 +4,7 @@ import java.util.Collection;
 
 public interface CustomerService {
 
-	Customer save(String name);
+	Collection<Customer> save(String... names);
 
 	Customer findById(Long id);
 

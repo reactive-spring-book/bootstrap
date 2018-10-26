@@ -5,6 +5,8 @@ import org.junit.Test;
 import rsb.bootstrap.ApplicationContextAwareBaseClass;
 import rsb.bootstrap.Customer;
 
+import java.util.Collection;
+
 /**
  * @author <a href="mailto:josh@joshlong.com">Josh Long</a>
  */
@@ -15,9 +17,10 @@ public class EnableApplicationTest extends ApplicationContextAwareBaseClass {
 	public void insert() {
 		int count = getCustomerService().findAll().size();
 		try {
-			Customer bob = getCustomerService().save("Bob");
-			Assert.assertNotNull(bob);
-			getCustomerService().save(null);
+			Collection<Customer> bobs = getCustomerService().save("Bob");
+			Assert.assertNotNull(bobs);
+			Assert.assertEquals(bobs.size(), 1);
+			getCustomerService().save((String) null);
 		}
 		catch (Exception ex) {
 			Assert.assertEquals("there should be one more record in the database",

@@ -1,38 +1,51 @@
 package rsb.bootstrap.templates;
 
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 import rsb.bootstrap.BaseCustomerService;
 import rsb.bootstrap.Customer;
-import rsb.bootstrap.CustomerService;
 
 import javax.sql.DataSource;
 import java.util.Collection;
+import java.util.Collections;
 
 public class TransactionTemplateCustomerService extends BaseCustomerService {
 
 	private final TransactionTemplate transactionTemplate;
 
-	public TransactionTemplateCustomerService(DataSource ds) {
-		super(ds);
-		PlatformTransactionManager txManager = new DataSourceTransactionManager(ds);
-		this.transactionTemplate = new TransactionTemplate(txManager);
+	public TransactionTemplateCustomerService(DataSource dataSource,
+			TransactionTemplate tt) {
+		super(dataSource);
+		this.transactionTemplate = tt;
+	}
+
+	private <T> T rollbackIfNecessary(TransactionCallback<T> target,
+			T resultIfRolledBack) {
+		TransactionCallback<T> callback = status -> {
+			try {
+				return target.doInTransaction(status);
+			}
+			catch (IllegalArgumentException e) {
+				status.setRollbackOnly();
+				return resultIfRolledBack;
+			}
+		};
+		return this.transactionTemplate.execute(target);
 	}
 
 	@Override
-	public Customer save(String name) {
-		return transactionTemplate.execute(status -> super.save(name));
+	public Collection<Customer> save(String... names) {
+		return this.rollbackIfNecessary(s -> super.save(names), Collections.emptyList());
 	}
 
 	@Override
 	public Customer findById(Long id) {
-		return transactionTemplate.execute(status -> super.findById(id));
+		return this.rollbackIfNecessary(s -> super.findById(id), null);
 	}
 
 	@Override
 	public Collection<Customer> findAll() {
-		return transactionTemplate.execute(status -> super.findAll());
+		return this.rollbackIfNecessary(s -> super.findAll(), Collections.emptyList());
 	}
 
 }

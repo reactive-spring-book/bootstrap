@@ -9,7 +9,9 @@ import org.springframework.util.Assert;
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 // <1>
@@ -27,20 +29,24 @@ public class BaseCustomerService implements CustomerService {
 	}
 
 	@Override
-	public Customer save(String name) {
+	public Collection<Customer> save(String... names) {
 
-		KeyHolder keyHolder = new GeneratedKeyHolder();
-		this.jdbcTemplate.update(connection -> {
-			PreparedStatement ps = connection.prepareStatement(
-					"insert into CUSTOMERS (name) values(?)",
-					Statement.RETURN_GENERATED_KEYS);
-			ps.setString(1, name);
-			return ps;
-		}, keyHolder);
-		Long keyHolderKey = Objects.requireNonNull(keyHolder.getKey()).longValue();
-		Customer customer = this.findById(keyHolderKey);
-		Assert.notNull(name, "the name given must not be null");
-		return customer;
+		List<Customer> customerList = new ArrayList<>();
+		for (String name : names) {
+			KeyHolder keyHolder = new GeneratedKeyHolder();
+			this.jdbcTemplate.update(connection -> {
+				PreparedStatement ps = connection.prepareStatement(
+						"insert into CUSTOMERS (name) values(?)",
+						Statement.RETURN_GENERATED_KEYS);
+				ps.setString(1, name);
+				return ps;
+			}, keyHolder);
+			Long keyHolderKey = Objects.requireNonNull(keyHolder.getKey()).longValue();
+			Customer customer = this.findById(keyHolderKey);
+			Assert.notNull(name, "the name given must not be null");
+			customerList.add(customer);
+		}
+		return customerList;
 	}
 
 	@Override

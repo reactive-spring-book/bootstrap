@@ -3,6 +3,7 @@ package rsb.bootstrap;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Collection;
 import java.util.stream.Stream;
 
 public abstract class BaseClass {
@@ -11,8 +12,9 @@ public abstract class BaseClass {
 
 	@Test
 	public void insert() {
-		Customer bob = getCustomerService().save("Bob");
+		Collection<Customer> bob = getCustomerService().save("Bob");
 		Assert.assertNotNull(bob);
+		Assert.assertEquals(bob.size(), 1);
 	}
 
 	@Test
@@ -23,7 +25,7 @@ public abstract class BaseClass {
 
 	@Test
 	public void byId() {
-		Long id = getCustomerService().save("A").getId();
+		Long id = getCustomerService().save("A").iterator().next().getId();
 		Assert.assertEquals(id, getCustomerService().findById(id).getId());
 	}
 

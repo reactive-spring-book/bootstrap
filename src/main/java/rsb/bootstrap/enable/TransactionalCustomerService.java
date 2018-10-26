@@ -17,8 +17,8 @@ class TransactionalCustomerService extends BaseCustomerService {
 
 	@Transactional
 	@Override
-	public Customer save(String name) {
-		return super.save(name);
+	public Collection<Customer> save(String... names) {
+		return super.save(names);
 	}
 
 	@Override
