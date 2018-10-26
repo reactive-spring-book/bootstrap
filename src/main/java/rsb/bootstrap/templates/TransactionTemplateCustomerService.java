@@ -6,7 +6,6 @@ import rsb.bootstrap.Customer;
 
 import javax.sql.DataSource;
 import java.util.Collection;
-import java.util.Collections;
 
 public class TransactionTemplateCustomerService extends BaseCustomerService {
 
@@ -20,12 +19,7 @@ public class TransactionTemplateCustomerService extends BaseCustomerService {
 
 	@Override
 	public Collection<Customer> save(String... names) {
-		try {
-			return this.transactionTemplate.execute(s -> super.save(names));
-		}
-		catch (Exception e) {
-			return Collections.emptyList();
-		}
+		return this.transactionTemplate.execute(s -> super.save(names));
 	}
 
 	@Override

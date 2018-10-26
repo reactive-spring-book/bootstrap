@@ -31,7 +31,6 @@ public class TransactionTemplateCustomerServiceTest extends BaseClass
 	public void insert() {
 		super.insert();
 		this.testTransactionalityOfSave(getCustomerService());
-
 	}
 
 	@Override
