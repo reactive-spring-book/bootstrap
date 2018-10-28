@@ -8,10 +8,12 @@ import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.support.TransactionTemplate;
 import rsb.bootstrap.CustomerService;
 import rsb.bootstrap.DataSourceConfiguration;
 import rsb.bootstrap.Demo;
 import rsb.bootstrap.SpringUtils;
+import rsb.bootstrap.templates.TransactionTemplateCustomerService;
 
 import javax.sql.DataSource;
 
@@ -22,8 +24,13 @@ import javax.sql.DataSource;
 public class Application {
 
 	@Bean
-	PlatformTransactionManager platformTransactionManager(DataSource dataSource) {
-		return new DataSourceTransactionManager(dataSource);
+	PlatformTransactionManager transactionManager(DataSource ds) {
+		return new DataSourceTransactionManager(ds);
+	}
+
+	@Bean
+	TransactionTemplate transactionTemplate(PlatformTransactionManager tm) {
+		return new TransactionTemplate(tm);
 	}
 
 	public static void main(String args[]) {
