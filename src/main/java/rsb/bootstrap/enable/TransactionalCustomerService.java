@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 import java.util.Collection;
 
 @Service
-@Transactional
+@Transactional // <1>
 class TransactionalCustomerService extends BaseCustomerService {
 
 	TransactionalCustomerService(DataSource dataSource) {
@@ -30,5 +30,4 @@ class TransactionalCustomerService extends BaseCustomerService {
 	public Collection<Customer> findAll() {
 		return super.findAll();
 	}
-
 }

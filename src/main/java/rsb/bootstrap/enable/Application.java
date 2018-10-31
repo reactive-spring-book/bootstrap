@@ -18,7 +18,7 @@ import rsb.bootstrap.templates.TransactionTemplateCustomerService;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableTransactionManagement
+@EnableTransactionManagement // <1>
 @ComponentScan
 @Import(DataSourceConfiguration.class)
 public class Application {
