@@ -7,6 +7,7 @@ import rsb.bootstrap.CustomerService;
 
 import java.util.Collection;
 
+// <1>
 @RestController
 public class BootifulRestController {
 
@@ -16,6 +17,7 @@ public class BootifulRestController {
 		this.customerService = customerService;
 	}
 
+	// <2>
 	@GetMapping("/customers")
 	Collection<Customer> get() {
 		return this.customerService.findAll();

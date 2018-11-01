@@ -10,9 +10,9 @@ import java.util.Collection;
 
 @Service
 @Transactional // <1>
-class TransactionalCustomerService extends BaseCustomerService {
+public class TransactionalCustomerService extends BaseCustomerService {
 
-	TransactionalCustomerService(DataSource dataSource) {
+	public TransactionalCustomerService(DataSource dataSource) {
 		super(dataSource);
 	}
 
@@ -30,4 +30,5 @@ class TransactionalCustomerService extends BaseCustomerService {
 	public Collection<Customer> findAll() {
 		return super.findAll();
 	}
+
 }
