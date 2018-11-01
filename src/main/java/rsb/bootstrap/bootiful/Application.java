@@ -19,6 +19,7 @@ public class Application {
 		// <3>
 		SpringApplication.run(Application.class, args);
 	}
+
 }
 
 // <4>
@@ -37,4 +38,5 @@ class DemoListener {
 	public void exercise() {
 		Demo.workWithCustomerService(getClass(), this.customerService);
 	}
+
 }
