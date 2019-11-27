@@ -36,7 +36,7 @@ public class BootifulRestControllerTest {
 		this.mockMvc.perform(MockMvcRequestBuilders.get("/customers"))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.content()
-						.contentType(MediaType.APPLICATION_JSON_UTF8))
+						.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(MockMvcResultMatchers.jsonPath("@.[0].name").value("Jane"));
 	}
 
