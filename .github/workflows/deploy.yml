@@ -6,14 +6,12 @@ env:
   ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
 
   KINDLEGEN: /home/runner/bin/kindlegen/kindlegen
-
-  GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
-  GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
-
-  AWS_REGION: ${{ secrets.AWS_REGION }}
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    
   SPRING_PROFILES_ACTIVE: ci
+
+  PIPELINE_REPO_NAME: ${{ secrets.PIPELINE_REPO_NAME }}
+  PIPELINE_ORG_NAME: ${{ secrets.PIPELINE_ORG_NAME }}
+
 
 on:
   push:
@@ -42,4 +40,9 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
 
       - name: Deploy
-        run:  cd $GITHUB_WORKSPACE/.github/workflows ; ./deploy.sh
+        run: cd $GITHUB_WORKSPACE/.github/workflows ; ./deploy.sh
+
+      - name: Notify
+        run: |
+          curl -H "Accept: application/vnd.github.everest-preview+json" -H "Authorization: token ${GH_PAT}"  --request POST  \
+              --data '{"event_type": "update-event" }' https://api.github.com/repos/${PIPELINE_ORG_NAME}/${PIPELINE_REPO_NAME}/dispatches
