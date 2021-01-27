@@ -16,7 +16,6 @@ env:
   PIPELINE_REPO_NAME: ${{ secrets.PIPELINE_REPO_NAME }}
   PIPELINE_ORG_NAME: ${{ secrets.PIPELINE_ORG_NAME }}
 
-
 on:
   push:
     branches: [ master ]
