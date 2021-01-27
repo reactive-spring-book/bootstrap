@@ -9,6 +9,10 @@ env:
 
   SPRING_PROFILES_ACTIVE: ci
 
+  GH_PAT: ${{ secrets.GH_PAT }}
+  GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
+  GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+
   PIPELINE_REPO_NAME: ${{ secrets.PIPELINE_REPO_NAME }}
   PIPELINE_ORG_NAME: ${{ secrets.PIPELINE_ORG_NAME }}
 
