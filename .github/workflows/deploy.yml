@@ -6,7 +6,7 @@ env:
   ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
 
   KINDLEGEN: /home/runner/bin/kindlegen/kindlegen
-    
+
   SPRING_PROFILES_ACTIVE: ci
 
   PIPELINE_REPO_NAME: ${{ secrets.PIPELINE_REPO_NAME }}
@@ -42,7 +42,7 @@ jobs:
       - name: Deploy
         run: cd $GITHUB_WORKSPACE/.github/workflows ; ./deploy.sh
 
-      - name: Notify
+      - name: Initiate Pipeline
         run: |
           curl -H "Accept: application/vnd.github.everest-preview+json" -H "Authorization: token ${GH_PAT}"  --request POST  \
-              --data '{"event_type": "update-event" }' https://api.github.com/repos/${PIPELINE_ORG_NAME}/${PIPELINE_REPO_NAME}/dispatches
+              --data '{"event_type": "update-code-event" }' https://api.github.com/repos/${PIPELINE_ORG_NAME}/${PIPELINE_REPO_NAME}/dispatches
