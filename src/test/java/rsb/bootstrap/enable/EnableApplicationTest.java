@@ -1,6 +1,6 @@
 package rsb.bootstrap.enable;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import rsb.bootstrap.ApplicationContextAwareBaseClass;
 import rsb.bootstrap.TransactionTestMixin;
 
