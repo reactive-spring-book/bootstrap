@@ -1,6 +1,5 @@
 package rsb.bootstrap.context;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -27,8 +26,7 @@ public class Application {
 	}
 
 	@Bean
-	TransactionTemplateCustomerService customerService(DataSource ds,
-			TransactionTemplate tt) {
+	TransactionTemplateCustomerService customerService(DataSource ds, TransactionTemplate tt) {
 		return new TransactionTemplateCustomerService(ds, tt);
 	}
 
@@ -39,11 +37,11 @@ public class Application {
 
 	public static void main(String args[]) {
 		// <4>
-		ApplicationContext ac = SpringUtils.run(Application.class, "prod");
+		var applicationContext = SpringUtils.run(Application.class, "prod");
 
 		// <5>
-		CustomerService cs = ac.getBean(CustomerService.class);
-		Demo.workWithCustomerService(Application.class, cs);
+		var customerService = applicationContext.getBean(CustomerService.class);
+		Demo.workWithCustomerService(Application.class, customerService);
 	}
 
 }

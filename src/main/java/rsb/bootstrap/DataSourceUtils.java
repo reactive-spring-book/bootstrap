@@ -10,8 +10,7 @@ public abstract class DataSourceUtils {
 
 	public static DataSource initializeDdl(DataSource dataSource) {
 		// <1>
-		ResourceDatabasePopulator populator = new ResourceDatabasePopulator(
-				new ClassPathResource("/schema.sql")); // <2>
+		var populator = new ResourceDatabasePopulator(new ClassPathResource("/schema.sql")); // <2>
 		DatabasePopulatorUtils.execute(populator, dataSource);
 		return dataSource;
 	}

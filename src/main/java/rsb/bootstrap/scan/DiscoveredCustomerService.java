@@ -2,7 +2,6 @@ package rsb.bootstrap.scan;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionTemplate;
-import rsb.bootstrap.CustomerService;
 import rsb.bootstrap.templates.TransactionTemplateCustomerService;
 
 import javax.sql.DataSource;

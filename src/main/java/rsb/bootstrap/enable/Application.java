@@ -1,6 +1,5 @@
 package rsb.bootstrap.enable;
 
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +12,6 @@ import rsb.bootstrap.CustomerService;
 import rsb.bootstrap.DataSourceConfiguration;
 import rsb.bootstrap.Demo;
 import rsb.bootstrap.SpringUtils;
-import rsb.bootstrap.templates.TransactionTemplateCustomerService;
 
 import javax.sql.DataSource;
 
@@ -34,10 +32,8 @@ public class Application {
 	}
 
 	public static void main(String args[]) {
-		ConfigurableApplicationContext applicationContext = SpringUtils
-				.run(Application.class, "prod");
-		CustomerService customerService = applicationContext
-				.getBean(CustomerService.class);
+		var applicationContext = SpringUtils.run(Application.class, "prod");
+		var customerService = applicationContext.getBean(CustomerService.class);
 		Demo.workWithCustomerService(Application.class, customerService);
 	}
 

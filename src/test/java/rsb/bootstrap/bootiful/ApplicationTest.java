@@ -14,8 +14,7 @@ public class ApplicationTest extends ApplicationContextAwareBaseClass {
 	private final AtomicReference<ApplicationContext> contextAtomicReference = new AtomicReference<>();
 
 	@Override
-	protected ConfigurableApplicationContext buildApplicationContext(Class<?> config,
-			String... profiles) {
+	protected ConfigurableApplicationContext buildApplicationContext(Class<?> config, String... profiles) {
 		return new SpringApplicationBuilder().profiles(profiles).sources(config).run();
 	}
 

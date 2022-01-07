@@ -13,16 +13,12 @@ import javax.sql.DataSource;
 public class Application {
 
 	public static void main(String args[]) {
-
-		DataSource dataSource = new EmbeddedDatabaseBuilder()
-				.setType(EmbeddedDatabaseType.H2).build();
-		DataSource initializedDataSource = DataSourceUtils.initializeDdl(dataSource); // <1>
-		PlatformTransactionManager dsTxManager = new DataSourceTransactionManager(
-				initializedDataSource);// <2>
-		TransactionTemplate tt = new TransactionTemplate(dsTxManager); // <3>
+		var dataSource = new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build();
+		var initializedDataSource = DataSourceUtils.initializeDdl(dataSource); // <1>
+		var dsTxManager = new DataSourceTransactionManager(initializedDataSource);// <2>
+		var tt = new TransactionTemplate(dsTxManager); // <3>
 		// <4>
-		TransactionTemplateCustomerService customerService = new TransactionTemplateCustomerService(
-				initializedDataSource, tt);
+		var customerService = new TransactionTemplateCustomerService(initializedDataSource, tt);
 		Demo.workWithCustomerService(Application.class, customerService);
 	}
 

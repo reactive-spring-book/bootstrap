@@ -11,8 +11,8 @@ public abstract class ApplicationContextAwareBaseClass extends BaseClass {
 
 	protected ConfigurableApplicationContext getCurrentApplicationContext() {
 		if (this.reference.get() == null) {
-			ConfigurableApplicationContext applicationContext = this
-					.buildApplicationContext(getConfigurationClass(), "prod");
+			ConfigurableApplicationContext applicationContext = this.buildApplicationContext(getConfigurationClass(),
+					"prod");
 			this.reference.set(applicationContext);
 		}
 		return this.reference.get();
@@ -23,8 +23,7 @@ public abstract class ApplicationContextAwareBaseClass extends BaseClass {
 		return getCurrentApplicationContext().getBean(CustomerService.class);
 	}
 
-	protected ConfigurableApplicationContext buildApplicationContext(Class<?> config,
-			String... profiles) {
+	protected ConfigurableApplicationContext buildApplicationContext(Class<?> config, String... profiles) {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.getEnvironment().setActiveProfiles(profiles);
 		context.register(config);

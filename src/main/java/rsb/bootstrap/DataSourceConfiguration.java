@@ -29,8 +29,7 @@ public class DataSourceConfiguration {
 				@Value("${spring.datasource.password}") String password,
 				@Value("${spring.datasource.driver-class-name}") Class<Driver> driverClass // <5>
 		) {
-			DriverManagerDataSource dataSource = new DriverManagerDataSource(url,
-					username, password);
+			var dataSource = new DriverManagerDataSource(url, username, password);
 			dataSource.setDriverClassName(driverClass.getName());
 			return dataSource;
 		}
@@ -58,11 +57,9 @@ public class DataSourceConfiguration {
 	private static class DataSourcePostProcessor implements BeanPostProcessor {
 
 		@Override
-		public Object postProcessAfterInitialization(Object bean, String beanName)
-				throws BeansException {
-
-			if (bean instanceof DataSource) {
-				DataSourceUtils.initializeDdl(DataSource.class.cast(bean));
+		public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+			if (bean instanceof DataSource ds) {
+				DataSourceUtils.initializeDdl(ds);
 			}
 			return bean;
 		}

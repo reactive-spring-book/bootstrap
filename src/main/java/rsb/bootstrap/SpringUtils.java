@@ -8,7 +8,7 @@ public abstract class SpringUtils {
 
 	public static ConfigurableApplicationContext run(Class<?> sources, String profile) {
 		// <1>
-		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+		var applicationContext = new AnnotationConfigApplicationContext();
 
 		// <2>
 		if (StringUtils.hasText(profile)) {

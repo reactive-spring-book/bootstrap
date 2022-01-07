@@ -2,7 +2,7 @@ package rsb.bootstrap;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 
 public interface TransactionTestMixin {
 
@@ -14,11 +14,11 @@ public interface TransactionTestMixin {
 			customerService.save("Bob", null);
 		}
 		catch (Exception ex) {
-			Assert.assertEquals("there should be no new records in the database", count,
-					customerService.findAll().size());
+			Assertions.assertEquals(count, customerService.findAll().size(),
+					"there should be no new records in the database");
 			return;
 		}
-		Assert.fail();
+		Assertions.fail();
 	}
 
 }

@@ -11,8 +11,7 @@ public class TransactionTemplateCustomerService extends BaseCustomerService {
 
 	private final TransactionTemplate transactionTemplate; // <1>
 
-	public TransactionTemplateCustomerService(DataSource dataSource,
-			TransactionTemplate tt) {
+	public TransactionTemplateCustomerService(DataSource dataSource, TransactionTemplate tt) {
 		super(dataSource);
 		this.transactionTemplate = tt;
 	}
