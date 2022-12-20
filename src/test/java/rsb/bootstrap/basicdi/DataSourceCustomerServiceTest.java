@@ -6,8 +6,6 @@ import rsb.bootstrap.BaseClass;
 import rsb.bootstrap.CustomerService;
 import rsb.bootstrap.DataSourceUtils;
 
-import javax.sql.DataSource;
-
 public class DataSourceCustomerServiceTest extends BaseClass {
 
 	private final DataSourceCustomerService customerService;

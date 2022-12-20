@@ -2,7 +2,6 @@ package rsb.bootstrap.hardcoded;
 
 import rsb.bootstrap.BaseClass;
 import rsb.bootstrap.CustomerService;
-import rsb.bootstrap.DataSourceUtils;
 
 public class HardcodedTest extends BaseClass {
 

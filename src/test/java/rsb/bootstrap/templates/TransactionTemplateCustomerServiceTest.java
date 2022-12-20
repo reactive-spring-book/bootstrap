@@ -4,14 +4,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.support.TransactionTemplate;
 import rsb.bootstrap.BaseClass;
 import rsb.bootstrap.CustomerService;
 import rsb.bootstrap.DataSourceUtils;
 import rsb.bootstrap.TransactionTestMixin;
-
-import javax.sql.DataSource;
 
 public class TransactionTemplateCustomerServiceTest extends BaseClass implements TransactionTestMixin {
 

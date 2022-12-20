@@ -3,7 +3,6 @@ package rsb.bootstrap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collection;
 import java.util.stream.Stream;
 
 public abstract class BaseClass {
