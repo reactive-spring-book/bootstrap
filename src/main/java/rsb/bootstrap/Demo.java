@@ -1,11 +1,11 @@
 package rsb.bootstrap;
 
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.Assert;
 
 import java.util.stream.Stream;
 
-@Log4j2
+@Slf4j
 public class Demo {
 
 	public static void workWithCustomerService(Class<?> label, CustomerService customerService) {

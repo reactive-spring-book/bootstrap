@@ -1,17 +1,12 @@
 package rsb.bootstrap.bootiful;
 
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import rsb.bootstrap.ApplicationContextAwareBaseClass;
 
-import java.util.concurrent.atomic.AtomicReference;
-
-@Log4j2
+@Slf4j
 public class ApplicationTest extends ApplicationContextAwareBaseClass {
-
-	private final AtomicReference<ApplicationContext> contextAtomicReference = new AtomicReference<>();
 
 	@Override
 	protected ConfigurableApplicationContext buildApplicationContext(Class<?> config, String... profiles) {

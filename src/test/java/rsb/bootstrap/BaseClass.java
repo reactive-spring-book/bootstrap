@@ -12,7 +12,7 @@ public abstract class BaseClass {
 
 	@Test
 	public void insert() {
-		Collection<Customer> bob = getCustomerService().save("Bob");
+		var bob = getCustomerService().save("Bob");
 		Assertions.assertNotNull(bob);
 		Assertions.assertEquals(bob.size(), 1);
 	}
