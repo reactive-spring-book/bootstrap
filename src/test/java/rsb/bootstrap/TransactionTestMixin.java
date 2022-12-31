@@ -1,13 +1,12 @@
 package rsb.bootstrap;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.jupiter.api.Assertions;
+import org.slf4j.LoggerFactory;
 
 public interface TransactionTestMixin {
 
 	default void testTransactionalityOfSave(CustomerService customerService) {
-		Log log = LogFactory.getLog(getClass());
+		var log = LoggerFactory.getLogger(getClass());
 		log.info("using customer " + customerService.toString());
 		int count = customerService.findAll().size();
 		try {

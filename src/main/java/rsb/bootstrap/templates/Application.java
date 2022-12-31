@@ -3,12 +3,9 @@ package rsb.bootstrap.templates;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.support.TransactionTemplate;
 import rsb.bootstrap.DataSourceUtils;
 import rsb.bootstrap.Demo;
-
-import javax.sql.DataSource;
 
 public class Application {
 
